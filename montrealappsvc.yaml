@@ -5,7 +5,7 @@ metadata:
 spec:
   ports:
     - port: 80
-      targetPort: montrealapp-port
+      targetPort: montreal-port
       protocol: TCP
   type: LoadBalancer
   selector:

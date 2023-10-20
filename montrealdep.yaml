@@ -19,18 +19,18 @@ spec:
           image: 154114/server
           ports:
             - containerPort: 5000
-              name: montrealapp-port
+              name: montreal-port
           env:
             - name: Mongo_url
               valueFrom:
                 secretKeyRef:
                   key: Mongo_URL
-                  name: montreal_secret
+                  name: montreal-secret
             -  name: JWT_SECRET
                valueFrom:
                  secretKeyRef:
                    key: JWT_SECRET
-                   name: montreal_secret
+                   name: montreal-secret
       initContainers:
         - name: init-mydb
           image: busybox
