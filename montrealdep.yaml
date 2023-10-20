@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: montrealapp
+  labels:
+    app: montrealapp
+spec:
+  selector:
+    matchLabels:
+      app: montrealapp
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: montrealapp
+    spec:
+      containers:
+        - name: montrealapp
+          image: 154114/server
+          ports:
+            - containerPort: 5000
+              name: montrealapp-port
+          env:
+            - name: Mongo_url
+              valueFrom:
+                secretKeyRef:
+                  key: Mongo_URL
+                  name: montreal_secret
+            -  name: JWT_SECRET
+               valueFrom:
+                 secretKeyRef:
+                   key: JWT_SECRET
+                   name: montreal_secret
+      initContainers:
+        - name: init-mydb
+          image: busybox
+          command: [ 'sh', '-c', 'until nslookup web_db.$(cat /var/run/secrets/kubernetes.io/serviceaccount/namespace).svc.cluster.local; do echo waiting for mydb; sleep 2; done;' ]
