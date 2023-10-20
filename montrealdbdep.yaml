@@ -41,3 +41,10 @@ spec:
           awsElasticBlockStore:
             volumeID: vol-00c7163c62bc33ec2
             fsType: ext4
+      initContainers:
+        - name: busybox
+          image: busybox:latest
+          args: [ "rm", "-rf", "/data/db/lost+found" ]
+          volumeMounts:
+            - name: montreal-db-data
+              mountPath: /data/db
