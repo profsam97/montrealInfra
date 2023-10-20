@@ -27,13 +27,13 @@ spec:
             - name: MONGO_INITDB_ROOT_USERNAME
               valueFrom:
                 secretKeyRef:
-                  key: db-pass
-                  name: app-secret
+                  key: MONGO_INITDB_ROOT_USERNAME
+                  name: montreal_secret
             -  name: MONGO_INITDB_ROOT_PASSWORD
                valueFrom:
                  secretKeyRef:
-                   key: db-pass
-                   name: app-secret
+                   key: MONGO_INITDB_ROOT_PASSWORD
+                   name: montreal_secret
       nodeSelector:
         zone: us-east-2a  # to indicate which zone we want our pods to run, should be same with the zone our volume is.
       volumes:
