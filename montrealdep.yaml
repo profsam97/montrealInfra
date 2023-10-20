@@ -21,7 +21,7 @@ spec:
             - containerPort: 5000
               name: montreal-port
           env:
-            - name: Mongo_url
+            - name: Mongo_URL
               valueFrom:
                 secretKeyRef:
                   key: Mongo_URL
