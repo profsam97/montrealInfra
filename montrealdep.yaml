@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: montrealapp
-          image: 154114/server
+          image: {{ .Values.appimage}}
           ports:
             - containerPort: 5000
               name: montreal-port
